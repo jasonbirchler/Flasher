@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flasher Demo</title>
+    </head>
+    <body>
+        <button id="message">Trigger Flasher</button>
+    </body>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="./jquery.flasher.js"></script>
+    <script>
+    $(document).ready(function () {
+        var msg = "Thanks for looking at Flasher!";
+        $('#message').flasher(msg);
+    });
+    </script>
+</html>
