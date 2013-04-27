@@ -1,14 +1,14 @@
-jQuery.fn.Flasher = function (msg, options) {
+jQuery.fn.flasher = function (msg, options) {
   return this.each(function(index) {
     var defaults = {
-      
+        message: msg,
+        event  : 'click',
+        el     : '<div class="flasher"/>'
     };
-    var o;
-    
-    options ? o = jQuery.extend(defaults, options) : o = defaults;
+    var o = jQuery.extend(defaults, options);
 
-    jQuery(this).on(options.event, function () {
-      // body...
+    jQuery(this).on(o.event, function () {
+      console.log(o.message);
     })
   });
 }
