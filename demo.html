@@ -10,10 +10,11 @@
     <script src="./jquery.flasher.js"></script>
     <script>
     $(document).ready(function () {
-        var msg     = "Thanks for looking at Flasher!",
-            options = {};
+        var options = {
+            message : "Thanks for looking at Flasher!"
+        };
         
-        $('#message').flasher(msg, options);
+        $('#message').flasher(options);
     });
     </script>
 </html>
