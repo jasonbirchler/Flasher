@@ -20,6 +20,13 @@
                 })
             });
         },
+        
+        show : function (args) {
+            return this.each(function(index) {
+                console.log("show me!" + o.message);
+            });
+        },
+        
         destroy : function (args) {
             return this.each(function(index) {
                 console.log("destroyed!");
