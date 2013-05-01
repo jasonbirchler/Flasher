@@ -2,22 +2,33 @@
     var methods = {
         init : function (options) {
             var defaults = {
-                event     : 'click', // event to listen for
-                $el       : '<div class="flasher"/>',
-                animation : '', // animation used to show/hide the flash
-                duration  : 1000 // how long the flash displays in miliseconds
-            };
-            var o = $.extend(defaults, options);
+                    event        : 'click', // event to listen for
+                    animation    : 'fadeIn', // animation used to show/hide the flash
+                    inDuration   : 2000, // how long the flash displays in miliseconds
+                    outDuration  : 2000, // how long the flash displays in miliseconds
+                    msgDuration  : 2000 // how long the flash displays in miliseconds
+                },
+            
+                o = $.extend(defaults, options),
+
+                //create a counter to use as id for multiple flashers
+                flashCounter = 0;
 
             return this.each(function(index) {
-                var $this = $(this);
-
-                // insert the message into $el
+                var $this     = $(this),
+                    container = '<div class="flasher" id="flash-msg-' + flashCounter + '" style="display:none;"/>';
+                
+                $('body').append(container);
+                
+                $this.$el = $('#flash-msg-' + flashCounter);
+                $this.$el.text(o.message);
 
                 $this.on(o.event, function () {
-                    console.log(o.message);
                     // show the flash message
+                    $this.$el.fadeIn(o.inDuration);
+                    setTimeout(function() {$this.$el.fadeOut(o.outDuration);}, o.msgDuration);
                 })
+                flashCounter++;
             });
         },
         
