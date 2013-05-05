@@ -1,59 +1,42 @@
 (function($) {        
-    var methods = {
-        init : function (options) {
-            var defaults = {
-                    event        : 'click', // event to listen for
-                    animation    : 'fadeIn', // animation used to show/hide the flash
-                    inDuration   : 2000, // how long the flash displays in miliseconds
-                    outDuration  : 2000, // how long the flash displays in miliseconds
-                    msgDuration  : 2000 // how long the flash displays in miliseconds
-                },
+    $.fn.flasher = function( options ) {
+        var defaults = {
+                classNames : 'flasher',
+                animation    : 'fadeIn', // animation used to show/hide the flash
+                inDuration   : 2000, // how long the flash displays in miliseconds
+                outDuration  : 2000, // how long the flash displays in miliseconds
+                msgDuration  : 2000, // how long the flash displays in miliseconds
+                layout       : 'top'
+            },
+    
+            o = $.extend( defaults, options );
             
-                o = $.extend(defaults, options),
-
-                //create a counter to use as id for multiple flashers
-                flashCounter = 0;
-
-            return this.each(function(index) {
-                var $this     = $(this),
-                    container = '<div class="flasher" id="flash-msg-' + flashCounter + '" style="display:none;"/>';
-                
-                $('body').append(container);
-                
-                $this.$el = $('#flash-msg-' + flashCounter);
-                $this.$el.text(o.message);
-
-                $this.on(o.event, function () {
-                    // show the flash message
-                    $this.$el.fadeIn(o.inDuration);
-                    setTimeout(function() {$this.$el.fadeOut(o.outDuration);}, o.msgDuration);
-                })
-                flashCounter++;
-            });
-        },
-        
-        show : function (args) {
-            return this.each(function(index) {
-                console.log("show me!" + o.message);
-            });
-        },
-        
-        destroy : function (args) {
-            return this.each(function(index) {
-                console.log("destroyed!");
-            });
+        switch (o.layout) {
+          case "top":
+            //calculate top position
+            break;
+          case "bottom":
+            //calculate bottom position
+            break;
+          case "center":
+            //calculate center position
+            break;
         }
-    };
+            
+        return this.each( function( index ) {
+            var $el = '<div id="flasher" class="' +
+                      o.classNames +
+                      '" style="display:none; position: absolute; z-index: 9999; top: 5%; left: 50%;">' +
+                      o.message +
+                      '</div';
+            var $flasher;
 
-    $.fn.flasher = function( method ) {
+            $('body').append( $el );
+            $flasher = $('#flasher');
 
-        if ( methods[method] ) {
-            return methods[method].apply( this, Array.prototype.slice.call( arguments, 1 ));
-        } else if ( typeof method === 'object' || ! method ) {
-            return methods.init.apply( this, arguments );
-        } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );
-        }    
-
+            // show the flash message
+            $flasher.fadeIn( o.inDuration );
+            setTimeout( function() { $flasher.fadeOut(o.outDuration); }, o.msgDuration );
+        });
     };
 })(jQuery)

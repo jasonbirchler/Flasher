@@ -14,7 +14,9 @@
             message : "Thanks for looking at Flasher!"
         };
         
-        $('#message').flasher(options);
+        $('#message').on('click', function (e) {
+            $(this).flasher(options);   
+        });
     });
     </script>
 </html>
