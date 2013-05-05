@@ -13,13 +13,19 @@
             
         switch (o.layout) {
           case "top":
-            //calculate top position
+            /*
+                TODO calculate top position
+            */
             break;
           case "bottom":
-            //calculate bottom position
+          /*
+              TODO calculate bottom position
+          */
             break;
           case "center":
-            //calculate center position
+          /*
+              TODO calculate center position
+          */
             break;
         }
             
@@ -27,6 +33,9 @@
             var $el = '<div id="flasher" class="' +
                       o.classNames +
                       '" style="display:none; position: absolute; z-index: 9999; top: 5%; left: 50%;">' +
+                      /*
+                          TODO apply layout instead of hard-coding left/right
+                      */
                       o.message +
                       '</div';
             var $flasher;
@@ -37,6 +46,10 @@
             // show the flash message
             $flasher.fadeIn( o.inDuration );
             setTimeout( function() { $flasher.fadeOut(o.outDuration); }, o.msgDuration );
+            
+            /*
+                TODO destroy the DOM element
+            */
         });
     };
 })(jQuery)
