@@ -2,20 +2,40 @@
 <html>
     <head>
         <title>Flasher Demo</title>
+        <style>
+            #flasher {
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #999;
+            }
+            .warning {
+                background-color: yellow;
+            }
+            .success {
+                background-color: green;
+            }
+        </style>
     </head>
     <body>
-        <button id="message">Trigger Flasher</button>
+        <button id="warning">Trigger Warning</button>
+        <button id="success">Trigger Success</button>
     </body>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="./jquery.flasher.js"></script>
     <script>
     $(document).ready(function () {
-        var options = {
-            message : "Thanks for looking at Flasher!"
-        };
         
-        $('#message').on('click', function (e) {
-            $(this).flasher(options);   
+        $('#warning').on('click', function (e) {
+            $(this).flasher({
+                message : "Warning! Warning! Warning!",
+                classNames : "warning"
+            });
+        });
+        $('#success').on('click', function (e) {
+            $(this).flasher({
+                message : "Success!",
+                classNames : "success" 
+            });
         });
     });
     </script>
