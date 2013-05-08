@@ -31,20 +31,21 @@
         return this.each( function( index ) {
             var $el = '<div id="flasher" class="' +
                       o.classNames +
-                      '" style="display:none; position: absolute; z-index: 9999; top: 5%; left: 50%;">' +
+                      '" style="display:none; position: absolute; z-index: 9999; top: 5%; left: 50%;"' +
                       /*
                           TODO apply layout instead of hard-coding left/right
                       */
-                      o.message +
-                      '</div';
+                      ' />';
             var $flasher;
             
-            /*
-                TODO check to see if $flasher is already in the DOM before adding it.
-            */
+            if ( !$flasher ) {
+                $('body').append( $el );
+                $flasher = $('#flasher');
+            };
 
-            $('body').append( $el );
-            $flasher = $('#flasher');
+            $flasher.text( o.message )
+                    .removeClass()
+                    .addClass( o.classNames );
 
             // show the flash message
             $flasher.fadeIn( o.inDuration );
